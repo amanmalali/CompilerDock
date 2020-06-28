@@ -82,7 +82,7 @@ def compiler():
 		timeout_flag=1
 		
 	send_res={"output":output,"error":error,"fail":fail,"timeout":timeout_flag,"id":id_no}
-	#shutil.rmtree("./temp/"+folder_name)
+	shutil.rmtree("./temp/"+folder_name)
 	return(jsonify(send_res))
 
 if __name__ == '__main__':
