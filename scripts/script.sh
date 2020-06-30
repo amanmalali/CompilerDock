@@ -1,4 +1,5 @@
 #!/bin/bash
+source $HOME/.cargo/env
 compiler=$1
 file=$2
 output=$3

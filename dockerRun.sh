@@ -11,8 +11,3 @@ else
     echo exited: $code
 fi
 
-#echo output:
-# pipe to sed simply for pretty nice indentation
-#docker logs $cont | sed 's/^/\t/'
-
-#docker rm $cont &> /dev/null

@@ -1,16 +1,17 @@
-FROM frolvlad/alpine-java:jdk8-slim
+FROM ubuntu:latest
 
-RUN apk add --no-cache gcc musl-dev
-RUN apk add --no-cache g++
-RUN apk add python3
-RUN apk add go
-RUN apk add R
-RUN apk add rust
-RUN apk add ruby
-RUN apk add php-cli
-RUN apk add npm
+RUN apt-get update
+RUN apt-get install -y curl
+RUN apt-get install -y gcc
+RUN apt-get install -y g++
+RUN apt-get install -y software-properties-common
+RUN apt-get install -y python3
+RUN apt-get install -y default-jre
+RUN apt-get install -y default-jdk
+RUN apt-get install -y golang
+RUN apt-get install -y r-base
+RUN apt-get install -y php-cli
+RUN apt-get install -y ruby-full
+RUN apt-get install -y npm
 RUN npm install -g underscore shelljs sys lodash async body-parser
-RUN echo "@testing http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
-    && apk add --update mono@testing  \
-    && rm -rf /var/cache/apk/*
-
+RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
