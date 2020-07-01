@@ -11,6 +11,5 @@ usermod -aG docker ${USER}
 chmod 666 /var/run/docker.sock
 docker build -t "compiler:v1" - < Dockerfile
 pip3 install -r `pwd`/requirements.txt
-chmod 666 /var/run/docker.sock
 #gunicorn -w 10 --bind 0.0.0.0:80 application:application
 # sudo su - ${USER}  Run this command in terminal after all of this
