@@ -32,3 +32,11 @@ Some languages may cause errors in certain situations, please raise an issue wit
 Additional languages can be added by adding the appropriate command in the Dockerfile located in the Setup folder
 * ``` RUN apt-get install <Name of ubuntu package for the language>```
 Languages can also be removed from the dockerfile if they are not needed by deleting the corresponding RUN command in the Dockerfile
+
+
+## TODO
+* Memory limitations on Docker
+* Lighter Dockerfile
+* Actions on GitHub
+* Combine docker shell script with python
+* Use quart and Hypercorn
