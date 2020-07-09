@@ -1,18 +1,16 @@
 # CompilerDock
 ## Prerequisites
-* Python3
+* Python3.7+
+* pipenv
 * Docker
-  * Docker can also be installed using the included install script
-## Installation
-* Run install.sh script in the Setup directory as root user. Install will take about 20 minutes
-  * ```$sudo ./install.sh ```
-* The script will install ```docker-ce```, ```pip3```, ```gunicorn``` and enables Docker commands to be run without ```$sudo```
-* Verify installation by running ```$docker version```
-* Install Python packages by using requirements.txt in the Setup folder 
-  * ```$sudo pip3 install -r requirements.txt```
-* Test the API by running the flask server ```$python application.py```
-* If the terminal says ```* Running on http://127.0.0.1:5000/``` The installation is successful
-
+## Installation and running
+* ```git clone``` the repository and ```cd``` into the cloned repository
+* run ```docker build -t compiler:v1 .``` to build the docker container
+* run ```pipenv install``` to install the required python packages
+* run ```pipenv shell``` to enter the virtual terminal and load the .env file
+  * NOTE: Change FLASK_ENV based on dev environment
+* ```flask run``` to start the server
+  
 ## Current languages supported 
 * C
 * C++

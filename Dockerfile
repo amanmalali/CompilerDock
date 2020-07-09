@@ -1,5 +1,6 @@
 FROM ubuntu:latest
-
+RUN mkdir /scripts
+COPY ./src/scripts/run.sh /scripts
 RUN apt-get update
 RUN apt-get install -y curl
 RUN apt-get install -y gcc
