@@ -17,9 +17,9 @@ async def run_code(lang, code, stdin):
     sleep_count=0
     timeout=20
     with tempfile.TemporaryDirectory(dir=f"{BASE_PATH}/temp") as dest:
-        await init_dir(dest=dest, filenames=[FileNames.error.value, FileNames.output.value])
-        await create_files(code, filenames[lang], dest)
-        await create_files(stdin, FileNames.input.value, dest)
+        init_dir(dest=dest, filenames=[FileNames.error.value, FileNames.output.value])
+        create_files(code, filenames[lang], dest)
+        create_files(stdin, FileNames.input.value, dest)
         if(lang in comp):
             param2 = '/scripts/run.sh ' + inter[lang] + ' ' + filenames[lang] + exe[lang]
         else:
@@ -31,15 +31,15 @@ async def run_code(lang, code, stdin):
             if os.path.exists(f"{dest}/{FileNames.completed.value}"):
                 finish_run=True
             else:
-                asyncio.sleep(1)
+                await asyncio.sleep(1)
                 sleep_count+=1
 
-        error, fail = await error_check(dest, FileNames.error.value)
+        error, fail = error_check(dest, FileNames.error.value)
         if finish_run:
-            output = await read_ouput(dest, FileNames.completed.value)
+            output = read_ouput(dest, FileNames.completed.value)
             timeout_flag=0
         else:
-            output = await read_ouput(dest, FileNames.output.value)
+            output = read_ouput(dest, FileNames.output.value)
             timeout_flag=1
 
     return (output, error, fail, timeout_flag)
