@@ -4,12 +4,12 @@
 * pipenv
 * Docker
 ## Installation and running
-* ```git clone``` the repository and ```cd``` into the cloned repository
-* run ```docker build -t compiler:v1 .``` to build the docker container
-* run ```pipenv install``` to install the required python packages
-* run ```pipenv shell``` to enter the virtual terminal and load the .env file
-  * NOTE: Change FLASK_ENV based on dev environment
-* ```flask run``` to start the server
+* ```$git clone``` the repository and ```$cd``` into the cloned repository
+* run ```$docker build -t compiler:v1 .``` to build the docker container
+* run ```$pipenv install``` to install the required python packages
+* run ```$pipenv shell``` to enter the virtual terminal and load the .env file
+  * NOTE: Change FLASK_ENV based on dev environment ```$export QUART_APP=application:app```
+* ```$quart run``` to start the server
   
 ## Current languages supported 
 * C
