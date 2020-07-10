@@ -37,4 +37,4 @@ Languages can also be removed from the dockerfile if they are not needed by dele
 * Lighter Dockerfile
 * Actions on GitHub
 * Combine docker shell script with python
-* Use quart and Hypercorn
+* ~~Use quart and Hypercorn~~
