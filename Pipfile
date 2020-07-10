@@ -9,6 +9,8 @@ verify_ssl = true
 flask = "*"
 Flask-Cors = "*"
 gunicorn = "*"
+quart = "*"
+quart-cors = "*"
 
 [requires]
 python_version = "3.7"
