@@ -1,0 +1,26 @@
+<div class="container">
+   <h1>CompilerDock Demo</h1>
+    <select name="lang" id="lang">
+        <option value="python3">Python</option>
+        <option value="javascript">JavaScript</option>        
+        <option value="c">C</option>
+        <option value="cpp">C++</option>
+        <option value="java">Java</option>        
+        <option value="go">GO</option>
+        <option value="php">PHP</option>
+        <option value="ruby">Ruby</option>
+        <option value="rust">Rust</option>
+    </select>
+<br>
+<br>
+<ngx-monaco-editor [options]="editorOptions" [(ngModel)]="code" id="editor"></ngx-monaco-editor>
+<div class="form-group" id="stdin">
+    <label for="stdin-label">Standard Input</label>
+    <textarea class="form-control" id="stdin-text" rows="3"></textarea>
+</div>
+<div class="form-group" id="stdout">
+    <label for="stdout-label">Standard Output</label>
+    <textarea class="form-control" id="stdout-text" rows="3" disabled></textarea>
+</div>
+<button class="btn btn-success" type="submit" (click)="submit()">Submit</button>
+</div>

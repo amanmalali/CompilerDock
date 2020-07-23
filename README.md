@@ -13,7 +13,12 @@ Client side webapp submits the code and the language it was written in, along wi
 * run ```$pipenv shell``` to enter the virtual terminal and load the .env file
   * NOTE: Change QUART_ENV based on dev environment ```$export QUART_APP=application:app```
 * ```$quart run``` to start the server
-  
+
+## Demo Application
+* Demo web application code presides inside the ```demo``` folder.
+* Steps to run the web application:
+  * Make sure ```node``` and ```Angular-cli``` is installed.
+  * Navigate to ```/demo/compilerdock``` and run ```npm start```.
 ## Current languages supported 
 * C
 * C++
