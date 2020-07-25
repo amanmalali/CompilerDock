@@ -23,7 +23,7 @@ Demo Application: [compilerDock]http://compilerdock.surge.sh/
   * Make sure ```node``` and ```Angular-cli``` is installed.
   * Navigate to ```/demo/compilerdock```.
   * Run ```npm install```
-  * * Run ```npm start``` and the app will be served at ```localhost:4200```.
+  * Run ```npm start``` and the app will be served at ```localhost:4200```.
 ## Current languages supported 
 * C
 * C++
