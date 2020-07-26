@@ -3,32 +3,32 @@
 Compiles the code sent to the URL and returns the output in JSON format
 
 * **URL**
-   
+
    /
 
 * **Method:**
-   
+
    POST
-  
+
 *  **URL Params**
-   
+
    `None`
 
 
 * **Data Params**
-   
+
    **Required:**
     *  lang=[string]
      * code=[string]
      * id=[string]
-    
+
   **Optional:**
     * stdin=[string]
 
 
 * **Success Response:**
   * **Code:** 200
-  *  **Content:** 
+  *  **Content:**
         ```json
         {
             "output": "Hello World\n",
@@ -38,7 +38,7 @@ Compiles the code sent to the URL and returns the output in JSON format
             "id": 1
         }
         ```
- 
+
 
 * **Sample Call:**
     ```json
@@ -47,4 +47,4 @@ Compiles the code sent to the URL and returns the output in JSON format
         "code": "print('Hello World')",
         "id": "1",
         "stdin": ""
-  }  
+  }

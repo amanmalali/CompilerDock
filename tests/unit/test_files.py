@@ -1,11 +1,10 @@
 import os
-import shutil
 import tempfile
 
 import pytest
 
-from src.utils import files
 from src.config import BASE_PATH, FileNames
+from src.utils import files
 
 
 @pytest.fixture(scope="class")
@@ -29,7 +28,9 @@ class TestFiles:
         output = files.read_ouput(temp_dir, FileNames.output.value)
         assert "" == output
 
-    @pytest.mark.parametrize("file_name, data", [("error_file1", ""), ("error_file2", "some data")])
+    @pytest.mark.parametrize(
+        "file_name, data", [("error_file1", ""), ("error_file2", "some data")]
+    )
     def test_create_files(self, temp_dir, file_name, data):
         files.create_files(data, file_name, temp_dir)
         file_names = os.listdir(path=temp_dir)
@@ -37,7 +38,7 @@ class TestFiles:
 
     @pytest.mark.parametrize(
         "file_name, expected_error",
-        [("error_file1", ("", False)), ("error_file2", ("some data", True))]
+        [("error_file1", ("", False)), ("error_file2", ("some data", True))],
     )
     def test_error_check(self, temp_dir, file_name, expected_error):
         error_val = files.error_check(temp_dir, file_name)

@@ -8,6 +8,7 @@ pytest = "*"
 tox = "*"
 pytest-asyncio = "*"
 pytest-cov = "*"
+pre-commit = "*"
 
 [packages]
 quart = "*"

@@ -4,20 +4,17 @@ from src.utils.run import run_code
 
 
 @pytest.mark.asyncio
-@pytest.mark.parametrize("inp, out", [
-    (   #successful compilation
-        ("python3", "print('Hello World')"),
-        ("Hello World\n", 0, 0),
-    ),
-    (   #error ouput
-        ("python3", "print('Hello World)"),
-        ("", 1, 0),
-    ),
-    (   #timeout
-        ("python3", "while True: pass"),
-        ("", 0, 1)
-    )
-])
+@pytest.mark.parametrize(
+    "inp, out",
+    [
+        (  # successful compilation
+            ("python3", "print('Hello World')"),
+            ("Hello World\n", 0, 0),
+        ),
+        (("python3", "print('Hello World)"), ("", 1, 0),),  # error ouput
+        (("python3", "while True: pass"), ("", 0, 1)),  # timeout
+    ],
+)
 async def test_run(inp, out):
     stdin = ""
     output, _, fail, timeout = await run_code(*inp, stdin)

@@ -1,5 +1,6 @@
-import os
 import enum
+import os
+
 
 class FileNames(enum.Enum):
     error = "errors"
@@ -7,14 +8,11 @@ class FileNames(enum.Enum):
     input = "input"
     output = "output"
 
+
 BASE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-comp=['c','c++','rust']
-exe={
-    "c": " ./a.out",
-    "c++": " ./a.out",
-    "rust": " ./file"
-}
-inter={
+comp = ["c", "c++", "rust"]
+exe = {"c": " ./a.out", "c++": " ./a.out", "rust": " ./file"}
+inter = {
     "python3": "python3",
     "c": "gcc",
     "c++": "g++",
@@ -23,7 +21,7 @@ inter={
     "R": "Rscript",
     "PHP": "php",
     "ruby": "ruby",
-    "rust":"rustc"
+    "rust": "rustc",
 }
 filenames = {
     "python3": "file.py",
@@ -34,5 +32,5 @@ filenames = {
     "R": "file.r",
     "PHP": "file.php",
     "ruby": "file.rb",
-    "rust": "file.rs"
+    "rust": "file.rs",
 }
