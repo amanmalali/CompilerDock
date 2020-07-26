@@ -22,7 +22,7 @@ To get your development environment setup, run:
 
 ``` {.sh}
 pipenv install --dev
-pre-compile install
+pre-commit install  #To install auto code formatting as git hooks
 ```
 ### Testing
 
