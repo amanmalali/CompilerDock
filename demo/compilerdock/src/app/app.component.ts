@@ -28,7 +28,7 @@ export class AppComponent {
         'Content-Type':  'application/json'
       })
     };
-    this.http.post('http://13.232.248.211:5000/',payload,httpOptions).subscribe((res:any)=>{
+    this.http.post('http://localhost:5000/',payload,httpOptions).subscribe((res:any)=>{
       this.stdout=res.output;
       document.getElementById('stdout-text').innerText=this.stdout;
     });
