@@ -4,11 +4,12 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+pytest = "*"
+tox = "*"
+pytest-asyncio = "*"
+pytest-cov = "*"
 
 [packages]
-flask = "*"
-Flask-Cors = "*"
-gunicorn = "*"
 quart = "*"
 quart-cors = "*"
 
