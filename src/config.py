@@ -1,5 +1,5 @@
-import os
 import enum
+import os
 
 
 class FileNames(enum.Enum):

@@ -1,11 +1,10 @@
 import os
-import shutil
 import tempfile
 
 import pytest
 
-from src.utils import files
 from src.config import BASE_PATH, FileNames
+from src.utils import files
 
 
 @pytest.fixture(scope="class")

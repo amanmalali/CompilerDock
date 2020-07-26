@@ -1,10 +1,9 @@
+import asyncio
 import os
 import subprocess
 import tempfile
-import time
-import asyncio
 
-from src.config import BASE_PATH, comp, exe, filenames, inter, FileNames
+from src.config import BASE_PATH, FileNames, comp, exe, filenames, inter
 from src.utils.files import create_files, error_check, init_dir, read_ouput
 
 try:
