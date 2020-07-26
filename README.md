@@ -39,6 +39,11 @@ Additional languages can be added by adding the appropriate command in the Docke
 * ``` RUN apt-get install <Name of ubuntu package for the language>```
 Languages can also be removed from the dockerfile if they are not needed by deleting the corresponding RUN command in the Dockerfile
 
+## Testing
+The project uses tox and pytest for testing
+Run ```tox``` to start the testing. 
+If you contribute to the project, please make sure to add/modify test cases.
+
 
 ## TODO
 * Memory limitations on Docker
