@@ -3,19 +3,8 @@ import pytest
 from application import app
 
 
-data = {
-        "lang": "python3",
-        "code": "print('Hello World')",
-        "stdin": "",
-        "id": 1
-    }
-expected = {
-    "output": "Hello World\n",
-    "error": "",
-    "fail": 0,
-    "timeout": 0,
-    "id": 1
-}
+data = {"lang": "python3", "code": "print('Hello World')", "stdin": "", "id": 1}
+expected = {"output": "Hello World\n", "error": "", "fail": 0, "timeout": 0, "id": 1}
 
 
 @pytest.mark.asyncio

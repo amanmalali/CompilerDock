@@ -9,4 +9,3 @@ if [ -z "$code" ]; then
 else
     echo exited: $code
 fi
-

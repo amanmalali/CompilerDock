@@ -32,6 +32,6 @@ export class AppComponent {
       this.stdout=res.output;
       document.getElementById('stdout-text').innerText=this.stdout;
     });
-    
+
   }
 }

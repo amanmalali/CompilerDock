@@ -17,4 +17,3 @@ else
 fi
 
 mv /compile/output /compile/completed
-
