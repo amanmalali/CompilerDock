@@ -1,4 +1,5 @@
 from quart import Blueprint, jsonify, request
+from quart.exceptions import HTTPException
 
 from src.utils.run import run_code
 
@@ -12,7 +13,11 @@ async def compiler():
     code = req_data["code"]
     id_no = req_data["id"]
     stdin = req_data["stdin"]
-    output, error, fail, timeout_flag = await run_code(lang, code, stdin)
+    try:
+        output, error, fail, timeout_flag = await run_code(lang, code, stdin)
+    except HTTPException as http_err:
+        return {"error": http_err.description}, http_err.status_code
+
     send_res = {
         "output": output,
         "error": error,
@@ -20,4 +25,5 @@ async def compiler():
         "timeout": timeout_flag,
         "id": id_no,
     }
+    HTTPException
     return jsonify(send_res)
