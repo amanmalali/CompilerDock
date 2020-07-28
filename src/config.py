@@ -1,6 +1,35 @@
 import enum
 import os
 
+BASE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+class DockerConfig:
+    def __init__(self, cmd, dest):
+        timeout = 20
+        self.cmd = cmd
+        self.dest = dest
+        env = os.getenv("QUART_ENV", "production")
+        if env == "development":
+            timeout = 10
+        self.timeout = timeout
+
+    def data(self):
+        data = {
+            "config": {
+                "Image": "compiler:v1",
+                "Cmd": ["/bin/bash", "-c"],
+                "HostConfig": {"Binds": []},
+            },
+            "name": "CompilerDock",
+            "timeout": 0,
+        }
+
+        data["timeout"] = self.timeout
+        data["config"]["Cmd"].append(self.cmd)
+        data["config"]["HostConfig"]["Binds"].append(f"{self.dest}:/compile")
+        return data
+
 
 class FileNames(enum.Enum):
     error = "errors"
@@ -9,10 +38,8 @@ class FileNames(enum.Enum):
     output = "output"
 
 
-BASE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-comp = ["c", "c++", "rust"]
 exe = {"c": " ./a.out", "c++": " ./a.out", "rust": " ./file"}
-inter = {
+lang_cmd = {
     "python3": "python3",
     "c": "gcc",
     "c++": "g++",
