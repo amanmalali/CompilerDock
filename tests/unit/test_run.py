@@ -9,10 +9,10 @@ from src.utils.run import run_code
     [
         (  # successful compilation
             ("python3", "print('Hello World')"),
-            ("Hello World\n", 0, 0),
+            ("Hello World\n", False, False),
         ),
-        (("python3", "print('Hello World)"), ("", 1, 0),),  # error ouput
-        (("python3", "while True: pass"), ("", 0, 1)),  # timeout
+        (("python3", "print('Hello World)"), ("", True, False),),  # error ouput
+        (("python3", "while True: pass"), ("", False, True)),  # timeout
     ],
 )
 async def test_run(inp, out):

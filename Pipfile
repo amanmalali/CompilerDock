@@ -5,14 +5,16 @@ verify_ssl = true
 
 [dev-packages]
 pytest = "*"
-tox = "*"
 pytest-asyncio = "*"
 pytest-cov = "*"
 pre-commit = "*"
+tox = "*"
 
 [packages]
 quart = "*"
 quart-cors = "*"
+aiodocker = "*"
+python-dotenv = "*"
 
 [requires]
 python_version = "3.7"

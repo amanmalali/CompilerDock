@@ -26,7 +26,7 @@ Demo Application: [compilerDock]http://compilerdock.surge.sh/
   * Navigate to ```/demo/compilerdock```.
   * Run ```npm install```
   * Run ```npm start``` and the app will be served at ```localhost:4200```.
-## Current languages supported 
+## Current languages supported
 * C
 * C++
 * Python3
