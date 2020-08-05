@@ -6,29 +6,35 @@ BASE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 class DockerConfig:
     def __init__(self, cmd, dest):
-        timeout = 20
+        tout = 10
         self.cmd = cmd
         self.dest = dest
         env = os.getenv("QUART_ENV", "production")
         if env == "development":
-            timeout = 10
-        self.timeout = timeout
+            tout = 10
+        self.tout = tout
 
+    @property
     def data(self):
         data = {
-            "config": {
-                "Image": "compiler:v1",
-                "Cmd": ["/bin/bash", "-c"],
-                "HostConfig": {"Binds": []},
-            },
             "name": "CompilerDock",
-            "timeout": 0,
+            "volumes": {},
+            "detach": True,
+            "image": "pydock",
+            "command": ["/bin/bash", "-c"],
+            "auto_remove": True
+            # "timeout": 0,
         }
 
-        data["timeout"] = self.timeout
-        data["config"]["Cmd"].append(self.cmd)
-        data["config"]["HostConfig"]["Binds"].append(f"{self.dest}:/compile")
+        # data["timeout"] = self.timeout
+        data["command"].append(self.cmd)
+        # data["config"]["HostConfig"]["Binds"].append(f"{self.dest}:/compile")
+        data["volumes"].update({self.dest: {"bind": "/compile", "mode": "rw"}})
         return data
+
+    @property
+    def timeout(self):
+        return self.tout
 
 
 class FileNames(enum.Enum):

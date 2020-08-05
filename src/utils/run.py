@@ -2,7 +2,7 @@ import asyncio
 import os
 import tempfile
 
-import aiodocker
+import docker
 from quart.exceptions import HTTPException
 
 from src.config import BASE_PATH, DockerConfig, FileNames, exe, filenames, lang_cmd
@@ -15,25 +15,21 @@ except FileExistsError:
 
 
 async def run_container(dest, command):
-    docker_config = DockerConfig(command, dest).data()
-    docker = aiodocker.Docker()
+    docker_config = DockerConfig(command, dest)
+    client = docker.from_env()
     sleep_count = 0
-    finish_run = False
+    finish_run = None
     try:
-        container = await docker.containers.create_or_replace(
-            name=docker_config["name"], config=docker_config["config"]
-        )
-        await container.start()
-        while sleep_count != docker_config["timeout"] and not finish_run:
+        client.containers.run(**docker_config.data)
+        while sleep_count != docker_config.timeout and not finish_run:
             if os.path.exists(f"{dest}/{FileNames.completed.value}"):
                 finish_run = True
                 break
             else:
                 await asyncio.sleep(1)
                 sleep_count += 1
-        await container.delete(force=True)
+
     except Exception:
-        await docker.close()
         raise HTTPException(status_code=500, description="Docker error", name=None)
     else:
         return finish_run
@@ -56,7 +52,7 @@ async def run_code(lang, code, stdin):
         create_files(stdin, FileNames.input.value, dest)
         command = "".join(
             [
-                "/scripts/run.sh ",
+                "/script/run.sh ",
                 lang_cmd[lang],
                 " ",
                 filenames[lang],
@@ -65,7 +61,6 @@ async def run_code(lang, code, stdin):
         )
 
         finish_run = await run_container(dest, command)
-        print("GOT HERE??")
         error, fail = error_check(dest, FileNames.error.value)
         if finish_run:
             output = read_ouput(dest, FileNames.completed.value)
