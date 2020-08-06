@@ -5,30 +5,45 @@ BASE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 class DockerConfig:
-    def __init__(self, cmd, dest):
-        timeout = 20
+    def __init__(self, cmd: str, dest: str):
+        tout = 20
         self.cmd = cmd
         self.dest = dest
         env = os.getenv("QUART_ENV", "production")
         if env == "development":
-            timeout = 10
-        self.timeout = timeout
+            tout = 10
+        self.tout = tout
 
+    def _image_name(self, name: str):
+        name = name.lower()
+        if "python" in name:
+            return "python-compiler"
+        if "c++" == name or "c" == name:
+            return "gcc-compiler"
+
+        return f"{name}-compiler"
+
+    @property
     def data(self):
         data = {
-            "config": {
-                "Image": "compiler:v1",
-                "Cmd": ["/bin/bash", "-c"],
-                "HostConfig": {"Binds": []},
-            },
-            "name": "CompilerDock",
-            "timeout": 0,
+            "name": None,
+            "volumes": {},
+            "detach": True,
+            "image": None,
+            "command": ["/bin/bash", "-c"],
+            "auto_remove": True,
         }
 
-        data["timeout"] = self.timeout
-        data["config"]["Cmd"].append(self.cmd)
-        data["config"]["HostConfig"]["Binds"].append(f"{self.dest}:/compile")
+        img_name = self._image_name(self.cmd.split()[1])
+        data["image"] = img_name
+        data["name"] = f"{img_name}-container"
+        data["command"].append(self.cmd)
+        data["volumes"].update({self.dest: {"bind": "/compile", "mode": "rw"}})
         return data
+
+    @property
+    def timeout(self):
+        return self.tout
 
 
 class FileNames(enum.Enum):
@@ -38,7 +53,7 @@ class FileNames(enum.Enum):
     output = "output"
 
 
-exe = {"c": " ./a.out", "c++": " ./a.out", "rust": " ./file"}
+exe = {"c": " && ./a.out", "c++": " && ./a.out", "rust": " && ./file"}
 lang_cmd = {
     "python3": "python3",
     "c": "gcc",

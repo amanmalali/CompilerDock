@@ -13,8 +13,10 @@ tox = "*"
 [packages]
 quart = "*"
 quart-cors = "*"
-aiodocker = "*"
 python-dotenv = "*"
+docker = "*"
+inquirer = "*"
+halo = "*"
 
 [requires]
 python_version = "3.7"
